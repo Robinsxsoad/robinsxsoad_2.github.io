@@ -8,7 +8,7 @@
     <title>D3 Test</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="css/bar.css" rel="stylesheet">
 
     <!-- D3 -->
@@ -56,18 +56,20 @@
         .append("div")
         .attr("class", "bar")
         .style("height",function(d){
-          var barHeight = d*5;
+          var barHeight = d*10;
           return barHeight + "px";
         });
 
       </script>
       
+      <svg width="200" height="200"></svg>
+
       <!-- <div class="bar"></div> -->
       
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="js/bootstrap.min.js"></script> -->
   </body>
 </html>
