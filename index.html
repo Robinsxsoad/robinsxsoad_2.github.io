@@ -9,7 +9,8 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    
+    <link href="css/bar.css" rel="stylesheet">
+
     <!-- D3 -->
     <script type="text/javascript" src="js/d3/d3.js"></script>
     
@@ -49,10 +50,15 @@
           }
         });;
 
+        d3.select("body").selectAll("div")
+        .data(dataset)
+        .enter()
+        .append("div")
+        .attr("class", "bar");
 
       </script>
       
-
+      <!-- <div class="bar"></div> -->
       
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
