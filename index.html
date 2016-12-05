@@ -20,16 +20,29 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+      .chart div {
+      font: 10px sans-serif;
+      background-color: steelblue;
+      text-align: right;
+      padding: 3px;
+      margin: 1px;
+      color: white;
+    }
+    </style>
+  
   </head>
+
+  
   <body>
     <h1>D3 Test!</h1>
       <script type="text/javascript">
 
-      var dataset = [5,10,15,20,25];
+      // var dataset = [5,10,15,20,25];
 
-        d3.select("body")
-        .append("p")
-        .text("Párrafo agregado con D3!");
+      //   d3.select("body")
+      //   .append("p")
+      //   .text("Párrafo agregado con D3!");
 
         // d3.select("body").selectAll("p")
         // .data(dataset)
@@ -37,41 +50,56 @@
         // .append("p")
         // .text("Párrafo nuevo!");
 
-        d3.select("body").selectAll("p")
-        .data(dataset)
-        .enter()
-        .append("p")
-        .text(function(d) {return "El dato que tengo es "+d;})
-        .style("color", function(d) {
-          if (d > 15) {
-            return "red";
-          }else{
-            return "black";
-          }
-        });;
+        // d3.select("body").selectAll("p")
+        // .data(dataset)
+        // .enter()
+        // .append("p")
+        // .text(function(d) {return "El dato que tengo es "+d;})
+        // .style("color", function(d) {
+        //   if (d > 15) {
+        //     return "red";
+        //   }else{
+        //     return "black";
+        //   }
+        // });;
 
-        d3.select("body").selectAll("div")
-        .data(dataset)
-        .enter()
-        .append("div")
-        .attr("class", "bar")
-        .style("height",function(d){
-          var barHeight = d*10;
-          return barHeight + "px";
+        // d3.select("body").selectAll("div")
+        // .data(dataset)
+        // .enter()
+        // .append("div")
+        // .attr("class", "bar")
+        // .style("height",function(d){
+        //   var barHeight = d*10;
+        //   return barHeight + "px";
+        // });
+
+        // var svg = d3.select("body").append("svg");
+        // svg.attr("width", 500)
+        // .attr("height", 500);
+
+        // var circles = svg.selectAll("circle")
+        // .data(dataset)
+        // .enter()
+        // .append("circle");
+
+        // circles.attr("cx", function(d, i){return (i * 50) + 25;})
+        // .attr("cy", 250)
+        // .attr("r", function(d){return d;});
+
+        // var dataset = []
+        // d3.csv("data.csv", function(data) {
+        // dataset = data.map(function(d) { return [ +d["max_i"], +d["min_i"] ]; });
+        // console.log(dataset)
+        // });
+        
+        
+        d3.csv("data/nac_abs.csv", function(data) {
+        
+        // Acá se construye el gráfico de barra
+
+
+
         });
-
-        var svg = d3.select("body").append("svg");
-        svg.attr("width", 500)
-        .attr("height", 500);
-
-        var circles = svg.selectAll("circle")
-        .data(dataset)
-        .enter()
-        .append("circle");
-
-        circles.attr("cx", function(d, i){return (i * 50) + 25;})
-        .attr("cy", 250)
-        .attr("r", function(d){return d;});
 
       </script>
       
