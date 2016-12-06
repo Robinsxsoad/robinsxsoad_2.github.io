@@ -99,7 +99,7 @@
 
 // Gráfico ordenable
 
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
+var margin = {top: 20, right: 20, bottom: 30, left: 60},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -148,7 +148,7 @@ d3.json("data/nac_abs.json", function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Frequency");
+      .text("Tasa de abstención");
 
   svg.selectAll(".bar")
       .data(data)
