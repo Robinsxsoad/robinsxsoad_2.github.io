@@ -12,7 +12,7 @@
     <link href="css/bar.css" rel="stylesheet">
 
     <!-- D3 -->
-    <script type="text/javascript" src="js/d3/d3.js"></script>
+    <!-- <script type="text/javascript" src="js/d3/d3.js"></script> -->
     <script type="text/javascript" src="js/d3/d3v3.js"></script>
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -138,7 +138,13 @@ d3.json("data/nac_abs.json", function(error, data) {
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+      .call(xAxis)
+    .append("text")
+      // .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Región");
 
   svg.append("g")
       .attr("class", "y axis")
