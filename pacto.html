@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>D3 Test</title>
+
+    <!-- Bootstrap -->
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link href="css/bar.css" rel="stylesheet"> -->
+    <link href="css/nvd3.css" rel="stylesheet">
+
+    <!-- D3 -->
+    <!-- <script type="text/javascript" src="js/d3/d3.js"></script> -->
+    <script type="text/javascript" src="js/d3/d3v3.js"></script>
+    <script type="text/javascript" src="js/nvd3/nvd3.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style> /* set the CSS */
+
+
+
+</style>
+  
+  </head>
+
+
+  <body>
+    <h1>D3 Test!</h1>
+      
+      <script type="text/javascript">
+
+nv.addGraph(function() {
+  var chart = nv.models.pieChart()
+      .x(function(d) { return d.label })
+      .y(function(d) { return d.value })
+      .showLabels(true)     //Display pie labels
+      .labelThreshold(.05)  //Configure the minimum slice size for labels to show up
+      .labelType("percent") //Configure what type of data to show in the label. Can be "key", "value" or "percent"
+      .donut(true)          //Turn on Donut mode. Makes pie chart look tasty!
+      .donutRatio(0.35)     //Configure how big you want the donut hole size to be.
+      ;
+
+d3.select("#chart2")
+        .datum(exampleData())
+        .transition().duration(350)
+        .call(chart);
+
+        // nv.utils.windowResize(chart.update);
+
+  return chart;
+});
+
+function exampleData() {
+  return  [
+      {
+        "label": "A. PARTIDO REGIONALISTA DE MAGALLANES",
+        "value": 448,
+    },
+    {
+        "label": "C. PACTO PODER ECOLOGISTA Y CIUDADANO",
+        "value": 81168
+    },
+    {
+        "label": "D. PACTO AYSEN",
+        "value": 108
+    },
+    {
+        "label": "E. PACTO NUEVA MAYORIA",
+        "value": 1760632
+    },
+    {
+        "label": "F. PACTO CHILE VAMOS",
+        "value": 1827425
+    },
+    {
+        "label": "I. PACTO CHILE QUIERE AMPLITUD",
+        "value": 38223
+    },
+    {
+        "label": "K. PACTO CAMBIEMOS LA HISTORIA",
+        "value": 19398
+    },
+    {
+        "label": "M. PACTO PUEBLO UNIDO",
+        "value": 46785
+    },
+    {
+        "label": "N. PACTO NORTE VERDE",
+        "value": 4313
+    },
+    {
+        "label": "O. PACTO YO MARCO POR EL CAMBIO",
+        "value": 92425
+    },
+    {
+        "label": "P. PACTO ALTERNATIVA DEMOCRATICA",
+        "value": 39454
+    },
+    {
+        "label": "Q. PARTIDO UNIDOS RESULTA EN DEMOCRACIA",
+        "value": 1006
+    },
+    {
+        "label": "R. PACTO JUSTICIA Y TRANSPARENCIA",
+        "value": 14920
+    }
+    ];
+}
+      </script>
+      
+      
+    <!-- <svg class="chart svg"></svg> -->
+    <svg id="chart2" height="300px" width="400px"></svg>
+      
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- <script src="js/bootstrap.min.js"></script> -->
+  </body>
+</html>
