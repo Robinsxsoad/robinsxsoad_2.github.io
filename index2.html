@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>D3 Test</title>
+
+    <!-- Bootstrap -->
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="css/bar.css" rel="stylesheet">
+    <!-- <link href="css/nvd3.css" rel="stylesheet"> -->
+
+    <!-- D3 -->
+    <!-- <script type="text/javascript" src="js/d3/d3.js"></script> -->
+    <script type="text/javascript" src="js/d3/d3v3.js"></script>
+    <script type="text/javascript" src="js/nvd3/nvd3.js"></script>
+
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style> /* set the CSS */
+
+.bar { fill: steelblue; }
+
+</style>
+  
+  </head>
+
+
+  <body>
+    <h1>D3 Test!</h1>
+      <script type="text/javascript">
+
+        // Gráfico svg de ejemplo
+        // set the dimensions and margins of the graph
+        nv.addGraph(function() {
+  var chart = nv.models.discreteBarChart()
+      .x(function(d) { return d.label })    //Specify the data accessors.
+      .y(function(d) { return d.value })
+      .staggerLabels(true)    //Too many bars and not enough room? Try staggering labels.
+      .tooltips(false)        //Don't show tooltips
+      .showValues(true)       //...instead, show the bar value right on top of each bar.
+      .transitionDuration(350)
+      ;
+
+  d3.select('#chart svg')
+      .datum(exampleData())
+      .call(chart);
+
+  nv.utils.windowResize(chart.update);
+
+  return chart;
+});
+
+//Each bar represents a single discrete quantity.
+function exampleData() {
+ return  [ 
+    {
+      key: "Cumulative Return",
+      values: [
+        { 
+          "label" : "A Label" ,
+          "value" : -29.765957771107
+        } , 
+        { 
+          "label" : "B Label" , 
+          "value" : 0
+        } , 
+        { 
+          "label" : "C Label" , 
+          "value" : 32.807804682612
+        } , 
+        { 
+          "label" : "D Label" , 
+          "value" : 196.45946739256
+        } , 
+        { 
+          "label" : "E Label" ,
+          "value" : 0.19434030906893
+        } , 
+        { 
+          "label" : "F Label" , 
+          "value" : -98.079782601442
+        } , 
+        { 
+          "label" : "G Label" , 
+          "value" : -13.925743130903
+        } , 
+        { 
+          "label" : "H Label" , 
+          "value" : -5.1387322875705
+        }
+      ]
+    }
+  ]
+
+}
+        
+      </script>
+      
+      
+
+      <!-- <div class="bar"></div> -->
+      <svg class="#chart"></svg>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- <script src="js/bootstrap.min.js"></script> -->
+  </body>
+</html>
