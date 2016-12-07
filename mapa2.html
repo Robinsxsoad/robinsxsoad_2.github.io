@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="js/d3/d3v3.js" charset="utf-8"></script>
+        <script src="plugins/topojson.js"></script>
+        <style>
+          body{font-family: sans-serif;font-size: 0.85em;padding:20px 40px;}
+          h1{text-align: center;margin-bottom: 50px;}
+          #map{float:left; margin-right: 40px;}
+          path{stroke:#444;stroke-width:0.5px;}
+          
+
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+#states {
+  fill: #aaa;
+}
+
+#states .active {
+  fill: orange;
+}
+
+#state-borders {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+
+        </style>
+    </head>
+    <body>
+      <h1>Mapa Coroplético</h1>
+      <div id="map"></div>
+      <section>
+        Hecho en base a:
+        <ul>
+          <li>
+            <a href="https://github.com/topojson/topojson" target="_blank">Plugin TopoJson</a>
+          </li>
+          <li>
+            <a href="https://github.com/d3/d3-plugins/tree/master/geo/tile" target="_blank">Plugin GeoTile</a>
+          </li>
+          <li>
+            Mosaicos basados en <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors.</a>
+          </li>
+        </ul>
+        Regiones coloreadas según datos de población a partir de los mapas obtenidos de la <a href="https://www.bcn.cl/siit/mapas_vectoriales/index_html" target="_black">Biblioteca Nacional del Congreso</a> y comprimidos a TopoJson mediante <a href="http://mapshaper.org/" target="_blank">MapShaper</a>.
+
+      </section>
+
+<script src="plugins/d3.geo.tile.js"></script>
+<script>
+    var width = 960,
+    height = 500,
+    centered;
+
+var projection = d3.geo.albersUsa()
+    .scale(1070)
+    .translate([width / 2, height / 2]);
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+svg.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height)
+    .on("click", clicked);
+
+var g = svg.append("g");
+
+d3.json("/mbostock/raw/4090846/us.json", function(error, us) {
+  if (error) throw error;
+
+  g.append("g")
+      .attr("id", "states")
+    .selectAll("path")
+      .data(topojson.feature(us, us.objects.states).features)
+    .enter().append("path")
+      .attr("d", path)
+      .on("click", clicked);
+
+  g.append("path")
+      .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+      .attr("id", "state-borders")
+      .attr("d", path);
+});
+
+function clicked(d) {
+  var x, y, k;
+
+  if (d && centered !== d) {
+    var centroid = path.centroid(d);
+    x = centroid[0];
+    y = centroid[1];
+    k = 4;
+    centered = d;
+  } else {
+    x = width / 2;
+    y = height / 2;
+    k = 1;
+    centered = null;
+  }
+
+  g.selectAll("path")
+      .classed("active", centered && function(d) { return d === centered; });
+
+  g.transition()
+      .duration(750)
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+      .style("stroke-width", 1.5 / k + "px");
+}
+
+</script>
+    </body>
+</html>
