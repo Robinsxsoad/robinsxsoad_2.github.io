@@ -83,11 +83,21 @@
                   .attr('class', 'region')
                   .attr('fill', d=>colorScale(d.properties.ABS))
                   .on('click',function(d){
-                    console.log(d.properties.ABS);
+                    if (d.properties.COD_REGI <= 1) {
+                      console.log(d.properties.ABS);
+                    }else
+                    {
+                      imprimir(d);
+                  }
+                  
                   d3.select(this).classed('active','true');
                   });
 
         svg.call(zoom);
+
+        function imprimir(d){
+          console.log(d.properties.COD_REGI);
+        }
 
         //funcion para manejar las imagenes de mapa de bits de fondo
         function zoomed() {
