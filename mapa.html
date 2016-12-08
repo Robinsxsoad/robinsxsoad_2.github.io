@@ -64,10 +64,10 @@
         .feature(data, data.objects.division_regional).features;
 
         //usamos la población para una escala de color
-        // var colorScale = d3.scale.linear()
-        // .range(["#ffff8c","#d7191c"])
-        // .domain([d3.min(dataRegiones, d=>d.properties.POBL2010)
-        //   ,d3.max(dataRegiones, d=>d.properties.POBL2010)]);
+        var colorScale = d3.scale.linear()
+        .range(["#ffff8c","#d7191c"])
+        .domain([d3.min(dataRegiones, d=>d.properties.ABS)
+          ,d3.max(dataRegiones, d=>d.properties.ABS)]);
 
         //comportamineto del zoom
         var zoom = d3.behavior.zoom()
@@ -81,7 +81,11 @@
                   .data(dataRegiones)
                   .enter().append('path')
                   .attr('class', 'region')
-                  .attr('fill', "white");
+                  .attr('fill', d=>colorScale(d.properties.ABS))
+                  .on('click',function(d){
+                    console.log(d.properties.ABS);
+                  d3.select(this).classed('active','true');
+                  });
 
         svg.call(zoom);
 

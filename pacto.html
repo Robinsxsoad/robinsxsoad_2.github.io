@@ -51,7 +51,7 @@ nv.addGraph(function() {
       ;
 
 d3.select("#chart2")
-        .datum(exampleData())
+        .datum(dataNac)
         .transition().duration(350)
         .call(chart);
 
@@ -60,7 +60,7 @@ d3.select("#chart2")
   return chart;
 });
 
-function exampleData() {
+function dataNac() {
   return  [
       {
         "label": "A. PARTIDO REGIONALISTA DE MAGALLANES",
